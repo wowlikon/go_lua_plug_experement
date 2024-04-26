@@ -1,0 +1,4 @@
+github.com/cathalgarvey/gopher-lua v0.0.0-20160120144859-d37748000dc5 h1:GRLIolkKIp3f6FgJ3Vr8C7l4ewuJlUC+nc7/u1o60iE=
+github.com/cathalgarvey/gopher-lua v0.0.0-20160120144859-d37748000dc5/go.mod h1:3z046U7K1mJ86YINAZ5t2Olk14UQnEPFmNLiJRXxOXs=
+github.com/yuin/gopher-lua v1.1.1 h1:kYKnWBjvbNP4XLT3+bPEwAXJx262OhaHDWDVOPjL46M=
+github.com/yuin/gopher-lua v1.1.1/go.mod h1:GBR0iDaNXjAgGg9zfCvksxSRnQx76gclCIb7kdAd1Pw=
