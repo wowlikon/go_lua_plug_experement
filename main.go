@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 
@@ -9,9 +11,25 @@ import (
 )
 
 func Square(L *lua.LState) int {
-	lv := L.ToInt(1)             /* get argument */
-	L.Push(lua.LNumber(lv * lv)) /* push result */
-	return 1                     /* number of results */
+	lv := L.ToInt(1)
+	L.Push(lua.LNumber(lv * lv))
+	return 1
+}
+
+func Get(L *lua.LState) int {
+	url := L.ToString(1)
+	resp, err := http.Get(url)
+	if err != nil {
+		return 0
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 0
+	}
+	L.Push(lua.LString(string(body)))
+	return 1
 }
 
 func loadLuaFile(state *lua.LState, path string) {
@@ -35,6 +53,7 @@ func main() {
 
 		pluginDir := filepath.Join(pluginsDir, dir.Name())
 		state := lua.NewState()
+		state.Register("get", Get)
 		state.Register("square", Square)
 
 		files, err := os.ReadDir(pluginDir)

@@ -1,0 +1,1 @@
+print(get("https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam"))
